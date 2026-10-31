@@ -54,6 +54,32 @@ class PublicationGateTests(unittest.TestCase):
         self.assertTrue(any("stored identifier" in x
                             for x in distribution.inspect_payloads(self.payloads)))
 
+    def test_weekly_plan_cannot_publish_preferences_or_evidence(self):
+        path = "templates/sessions/review-template.json"
+        original = self.payloads[path]
+        samples = {
+            "interest_basis": [{"topic": "birdwatching", "source": "learner response"}],
+            "skill_evidence": [{"initial_score": 35, "help_level": 3}],
+            "project_brief": "learning-projects/personal-topic/BRIEF.md",
+            "revision_history": [{"selection_reason": "Synthetic learner preference"}],
+            "future_profile_field": {"nested": "Synthetic private note"},
+        }
+        for field, content in samples.items():
+            with self.subTest(field=field):
+                value = json.loads(original)
+                value["next_week_project_plan"][field] = content
+                self.payloads[path] = json.dumps(value).encode()
+                self.assertTrue(any("Non-blank or invalid session template" in x
+                                    for x in distribution.inspect_payloads(self.payloads)))
+
+    def test_lesson_cannot_publish_weekly_plan_reference(self):
+        path = "templates/sessions/lesson-template.json"
+        value = json.loads(self.payloads[path])
+        value["weekly_plan"]["review_path"] = "sessions/personal-review.json"
+        self.payloads[path] = json.dumps(value).encode()
+        self.assertTrue(any("Non-blank or invalid session template" in x
+                            for x in distribution.inspect_payloads(self.payloads)))
+
     def test_binary_file_is_rejected(self):
         self.payloads["README.md"] = bytes([255, 254, 128])
         self.assertTrue(any("Non-text content" in x

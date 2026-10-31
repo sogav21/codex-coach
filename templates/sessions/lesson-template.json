@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "id": null,
   "kind": "lesson",
   "status": "template",
@@ -9,6 +9,7 @@
   "topic": null,
   "learning_outcome": null,
   "curriculum_step": null,
+  "weekly_plan": {"week_id": null, "revision": null, "review_path": null},
   "learning_project": null,
   "milestone": null,
   "prior_teaching": [],
