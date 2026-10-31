@@ -32,6 +32,13 @@ ASSESSMENT_NULLS = {"first_answer", "initial_score", "initial_criterion_scores",
                     "transfer_answer", "transfer_score", "help_level"}
 
 
+def blank_plan(value) -> bool:
+    """Weekly planning records may contain private preferences and evidence."""
+    if isinstance(value, dict):
+        return all(blank_plan(item) for item in value.values())
+    return value is None or (isinstance(value, list) and not value)
+
+
 def inspect_payloads(payloads: dict[str, bytes]) -> list[str]:
     issues = []
     for path in sorted(set(payloads) - ALLOWED):
@@ -53,6 +60,12 @@ def inspect_payloads(payloads: dict[str, bytes]) -> list[str]:
                 assert data["status"] == "template"
                 assert data["id"] is None and data["created_at"] is None
                 assert data["participation"] is False and data["completed"] is False
+                # Older session schemas have no weekly plan fields. When present,
+                # every planning value must be blank, including future extensions.
+                for key in ("weekly_plan", "next_week_project_plan"):
+                    if key in data and (not isinstance(data[key], dict) or
+                                        not blank_plan(data[key])):
+                        raise ValueError("Non-blank weekly plan")
 
                 def blank(value):
                     if isinstance(value, dict):

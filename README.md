@@ -5,8 +5,10 @@ The learner decides what to build, explains design choices, and evaluates eviden
 the agent writes the code. Lessons use one question at a time and preserve progress
 across chats without treating generated code as proof of the learner's understanding.
 
-This v1.1 starter includes a coaching skill, scoring rubrics, blank private-workspace
-templates, and a two-week curriculum with a new room-booking project.
+This v1.2 starter includes a coaching skill, scoring rubrics, blank private-workspace
+templates, and autonomous weekly project planning from demonstrated skills and
+declared interests. A one-week room-booking brief is a neutral example, not a
+preselected personal curriculum.
 It contains no real learner profile, chat history, answers, scores, project inventory,
 machine paths, or active automation registrations.
 
@@ -28,7 +30,7 @@ machine paths, or active automation registrations.
    and begin an ungraded diagnostic with one question at a time.
    ```
 
-4. Set your preferred language, goals, available learning time, and timezone in
+4. Set your preferred language, interests, goals, available learning time, and timezone in
    the private profile. The starter uses Greek and Europe/Athens as editable
    examples; it has no assumed learner identity or registered project IDs.
 
@@ -38,7 +40,11 @@ restart the app. See the [official skills documentation](https://learn.chatgpt.c
 ## What the coach does
 
 - Prepares lessons from the curriculum even when existing projects have no recent work.
+- Chooses and plans a new small project for each week using interests, actual skill
+  evidence, prerequisites, and available time; explains its choice and difficulty.
 - Guides one small new project at a time and leaves meaningful decisions to the learner.
+- Justifies any continuation and records what finishes, pauses, or closes before
+  a new project starts. Unknown interests or skills produce a provisional plan.
 - Records first answers, initial scores, help, final answers, and new-example performance
   separately. Missing answers remain unassessed, rather than receiving a zero.
 - Prepares weekly reviews that distinguish planned, taught, applied, and transferred knowledge.
@@ -55,6 +61,9 @@ No automation is installed by cloning this repository. After testing preparation
 and persistence in the private workspace, ask Codex to create the two local project
 tasks described in `AUTOMATIONS.md`: weekday lessons and a Saturday review.
 The template times are 09:00 and 10:00 in Europe/Athens; change them as needed.
+The Saturday task also prepares next week's project and five weekday steps. Daily
+lessons follow that plan; no third automation or weekly project-choice approval is
+needed. Approval of changes to active instructions remains a separate requirement.
 
 Verify actual IDs, project, status, effective timezone, nominal times, and next
 scheduled timestamps. A scheduler can apply timing offsets or use the computer's
@@ -62,6 +71,14 @@ timezone rather than store a separate IANA timezone. Report such limits explicit
 do not promise exact timing, DST behavior, or catch-up for missed runs without evidence.
 Local-file tasks require the computer and app to be available. See
 [official scheduling documentation](https://learn.chatgpt.com/docs/automations).
+
+## Updating an existing private workspace
+
+Review and adopt the revised coaching instructions, then merge the new interest
+fields and weekly-plan structure into existing private files. Preserve actual
+answers, scores, rubric versions, project history, and task IDs; do not replace
+them with blank templates. Update the two existing task prompts rather than
+creating duplicates. Old session records remain valid historical evidence.
 
 ## Privacy and publication checks
 
