@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Coach"
+  short_description: "Lessons, new projects, and saved learning progress"
+  default_prompt: "Use $codex-coach to resume my saved lesson, asking one question at a time."

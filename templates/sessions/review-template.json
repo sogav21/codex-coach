@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.1",
+  "id": null,
+  "kind": "review",
+  "status": "template",
+  "created_at": null,
+  "timezone": null,
+  "duration_minutes": 60,
+  "period": {"from": null, "to": null, "basis": null},
+  "evidence_scope": null,
+  "evidence": [],
+  "learning_summary": {
+    "real_answers": 0,
+    "scores": [],
+    "help_recorded": [],
+    "taught": [],
+    "applied": [],
+    "transferred": [],
+    "planned": [],
+    "deferred": [],
+    "conclusion": "Not evaluated"
+  },
+  "project_summary": {"artifact": "not_started", "personal_decisions": [], "understanding": "not_evaluated", "next_milestone": null},
+  "work_review": [],
+  "new_transfer_case": {"prompt": null, "answer": null, "score": null, "presented": false},
+  "next_week_priorities": [],
+  "proposal_ids": [],
+  "current_question": null,
+  "assessment": {
+    "first_answer": null,
+    "initial_score": null,
+    "help": [],
+    "help_level": null,
+    "final_answer": null,
+    "final_score": null
+  },
+  "participation": false,
+  "completed": false
+}
