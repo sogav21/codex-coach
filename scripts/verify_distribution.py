@@ -22,7 +22,7 @@ ALLOWED = frozenset({
 PATTERNS = {
     "credential token": re.compile(r"\b(?:gh[opsu]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-(?:proj-)?[A-Za-z0-9_-]{20,}|AKIA[A-Z0-9]{16})"),
     "private key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
-    "personal home path": re.compile(r"(?i)(?:[A-Z]:[\\/]Users[\\/][^\s`\"']+|/(?:Users|home)/[^\s/`\"']+/)"),
+    "personal home path": re.compile(r"(?i)(?:[A-Z]:[\\/]Users[\\/][^\s`\"']+|/(?:Users|home)/[^\s/`\"']+)"),
     "email address": re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b"),
     "stored identifier": re.compile(r"\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b", re.I),
     "credential assignment": re.compile(r"(?i)(?:api[_-]?key|access[_-]?token|password)\s*[=:]\s*[\"'][^\"'\s]{8,}[\"']"),
