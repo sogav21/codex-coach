@@ -40,6 +40,19 @@ class PublicationGateTests(unittest.TestCase):
         self.assertTrue(any("personal home path" in x
                             for x in distribution.inspect_payloads(self.payloads)))
 
+    def test_bare_unix_and_macos_home_paths_are_rejected(self):
+        # A home directory with no trailing slash is still a personal machine path.
+        samples = (
+            "/" + "home" + "/" + "test-person",
+            "/" + "Users" + "/" + "test-person",
+        )
+        for path in samples:
+            with self.subTest(path=path):
+                payloads = dict(self.payloads)
+                payloads["README.md"] += ("\n" + path).encode()
+                self.assertTrue(any("personal home path" in issue
+                                    for issue in distribution.inspect_payloads(payloads)))
+
     def test_real_assessment_cannot_replace_blank_template(self):
         path = "templates/sessions/lesson-template.json"
         value = json.loads(self.payloads[path])
